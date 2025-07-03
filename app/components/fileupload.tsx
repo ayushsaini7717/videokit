@@ -11,15 +11,16 @@ import { useRef, useState } from "react";
 
 interface FileUploadProps {
   onSuccess: (res: any) => void;
-  onProgress?: (progress: number) => void;
+  onProgress?: (progress: number,loading: boolean) => void;
   fileType?: "image" | "video";
 }
 
 const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const fileref=useRef<HTMLInputElement | null>(null);
 
-  //optional validation
+  
 
   const validateFile = (file: File) => {
     if (fileType === "video") {
@@ -48,22 +49,30 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
       const res = await upload({
         file,
         fileName: file.name,
-        publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY!,
-        signature: auth.signature,
-        expire: auth.expire,
-        token: auth.token,
+        publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!,
+        signature: auth.authenticationParameters.signature,
+        expire: auth.authenticationParameters.expire,
+        token: auth.authenticationParameters.token,
         onProgress: (event) => {
           if(event.lengthComputable && onProgress){
             const percent = (event.loaded / event.total) * 100;
-            onProgress(Math.round(percent))
+            onProgress(Math.round(percent),true);
           }
         },
         
       });
-      onSuccess(res)
+      const filePath = res.filePath;
+
+      const thumbnailUrl = `${process.env.NEXT_PUBLIC_URL_ENDPOINT}${filePath}/ik-thumbnail.jpg`;
+
+      
+      onSuccess({...res,thumbnailUrl})
+      fileref.current!.value="";
+      
     } catch (error) {
         console.error("Upload failed", error)
     } finally {
+        onProgress?.(Math.round(100), false);
         setUploading(false)
     }
   };
@@ -72,6 +81,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
     <>
       <input
         type="file"
+        ref={fileref}
         accept={fileType === "video" ? "video/*" : "image/*"}
         onChange={handleFileChange}
       />

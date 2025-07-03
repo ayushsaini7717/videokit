@@ -27,6 +27,7 @@ const Login=()=>{
                 <input onChange={(e)=>SetPassword(e.target.value)} required type="password" placeholder="Enter your password"></input>
                 <button type="submit">Login</button>
             </form>
+            <button onClick={()=>signIn("github")}>OR signin with github</button>
             <div>Don't have an account? <span onClick={()=>router.push("/register")} className="text-blue-500">Register</span></div>
         </div>
     </div>
