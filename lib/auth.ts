@@ -36,11 +36,11 @@ export const authOptions = {
                 }
 
                 return {
-                    id: user._id.tostring(),
+                    id: user._id.toString(),
                     email: user.email
                 }
             }catch(err){
-                throw new Error("Something went wrong!");
+                throw new Error("Something went wrong! "+err);
             }
         }
       })
