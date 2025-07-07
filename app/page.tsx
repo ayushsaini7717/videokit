@@ -1,9 +1,13 @@
+import AnimatedText from './components/animatedText';
 import CardComp from './components/card';
 import './styles.css';
 
 export default function Home() {
   return <main id='backgroundcolor' className='py-2 min-h-screen flex flex-col gap-7 justify-center items-center px-4 text-center'>
-  <h1 className='font-black text-3xl md:text-4xl'>Share Your Videos with the World</h1>
+  <h1 className='font-black text-3xl md:text-4xl'>
+    <AnimatedText text={'Share Your Videos with the World'}/>
+    
+    </h1>
   <p className='text-lg md:text-xl text-gray-500 font-bold max-w-xl'>Upload, share, and discover amazing videos from creators everywhere</p>
 
   <div className='flex flex-col sm:flex-row gap-3'>
