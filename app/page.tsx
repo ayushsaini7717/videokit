@@ -1,53 +1,35 @@
-"use client"
-import { useState } from "react";
-import FileUpload from "./components/fileupload";
-
-
+import CardComp from './components/card';
+import './styles.css';
 
 export default function Home() {
-  const [title,SetTitle]=useState("");
-  const [desc,Setdesc]=useState("");
-  const [uploadPercent,SetUploadPercent]=useState(0);
-  const [loading,setloading]=useState(false);
+  return <main id='backgroundcolor' className='py-2 min-h-screen flex flex-col gap-7 justify-center items-center px-4 text-center'>
+  <h1 className='font-black text-3xl md:text-4xl'>Share Your Videos with the World</h1>
+  <p className='text-lg md:text-xl text-gray-500 font-bold max-w-xl'>Upload, share, and discover amazing videos from creators everywhere</p>
 
-  const handleSuccess = async (response: any) => {
-    try{
-      await fetch("/api/auth/videos",{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          title: title,
-          description: desc,
-          thumbnailUrl: response.thumbnailUrl,
-          videoUrl: response.url
-        })
-      })
-      SetTitle("");
-      Setdesc("");
-    }catch(err){
-      throw new Error("Failed to video data into db!");
-    }
-  };
+  <div className='flex flex-col sm:flex-row gap-3'>
+    <button className='py-2 px-6 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition duration-100 ease-linear text-sm'>Get Started</button>
+    <button className='py-2 px-6 bg-white text-black font-medium cursor-pointer rounded hover:bg-white/90 transition duration-100 ease-linear text-sm'>Browse Videos</button>
+  </div>
 
-  const handleProgress = (percent: number,uploading: boolean) => {
-    setloading(uploading);
-    SetUploadPercent(percent);
-  };
-  return (
-    <div>
-      <h1>Upload a File</h1>
-      <input value={title} placeholder="Enter title" onChange={(e)=>SetTitle(e.target.value)}></input>
-      <input value={desc} placeholder="Enter description" onChange={(e)=>Setdesc(e.target.value)}></input>
-      <FileUpload
-        onSuccess={handleSuccess}
-        onProgress={handleProgress}
-        fileType="video" // or "video"
-      />
-      
-      {loading? <div>uploading {uploadPercent}%</div> : null}
-    </div>
-    
-  );
+  <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full max-w-6xl px-4'>
+    <CardComp 
+      icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-upload h-12 w-12 text-purple-600 mb-2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>}
+      title='Easy Upload'
+      desc='Upload your videos quickly and easily with our simple interface'
+    />
+    <CardComp
+      icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play h-12 w-12 text-blue-600 mb-2"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>}
+      title='High Quality'
+      desc='Watch videos in high quality with smooth streaming experience'
+    />
+    <CardComp
+      icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users h-12 w-12 text-green-600 mb-2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>}
+      title='Community'
+      desc='Join a community of creators and viewers sharing amazing content'
+    />
+  </div>
+</main>
+
 }
+
+
