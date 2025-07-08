@@ -4,18 +4,22 @@ import TypingText from "@/app/components/animatedText";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import styles from "./login.module.css";
 
 const Login=()=>{
     const [email,Setemail]=useState("");
     const [password,SetPassword]=useState("");
+    const [loading,setLoading]=useState(false);
     const router=useRouter();
 
     const handler=async (e: React.FormEvent<HTMLFormElement>)=>{
+        setLoading(true);
         e.preventDefault();
         const res=await signIn("credentials",{email,password,redirect: false});
         if(res?.error){
             throw new Error("Wrong email or password!");
         }else{
+            setLoading(false);
             router.push('/')
         }
     }
@@ -63,7 +67,7 @@ const Login=()=>{
           type="submit"
           className="mt-3 py-2 px-4 bg-black text-white font-medium rounded hover:bg-black/90 transition text-sm"
         >
-          Login
+          {loading ? <span className={styles.loader}></span> : <span>Login</span>}
         </button>
       </form>
   

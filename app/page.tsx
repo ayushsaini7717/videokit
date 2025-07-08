@@ -11,7 +11,7 @@ export default function Home() {
   <p className='text-lg md:text-xl text-gray-500 font-bold max-w-xl'>Upload, share, and discover amazing videos from creators everywhere</p>
 
   <div className='flex flex-col sm:flex-row gap-3'>
-    <button className='py-2 px-6 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition duration-100 ease-linear text-sm'>Get Started</button>
+    <button className='py-2 px-6 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition duration-100 ease-linear text-sm'>Upload Videos</button>
     <button className='py-2 px-6 bg-white text-black font-medium cursor-pointer rounded hover:bg-white/90 transition duration-100 ease-linear text-sm'>Browse Videos</button>
   </div>
 

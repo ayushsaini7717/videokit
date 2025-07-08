@@ -14,7 +14,7 @@ const Navbar=()=>{
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play h-8 w-8 text-purple-600">
         <polygon points="6 3 20 12 6 21 6 3" />
       </svg>
-      <h1 className="font-bold text-xl sm:text-2xl">VideoKit</h1>
+      <h1 onClick={()=>router.push("/")} className="cursor-default font-bold text-xl sm:text-2xl">VideoKit</h1>
     </div>
 
     <div className="hidden sm:flex gap-2 items-center">
