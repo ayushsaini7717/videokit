@@ -16,20 +16,27 @@ const Videocard=({videoUrl,thumbnailUrl,title,desc} : videoschema)=>{
         
       };
     return <>
-    <div className="rounded">
-         <div>
-             <video ref={videoRef} src={`${videoUrl}`} height={400} width={400} controls loop muted playsInline onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}></video>
-            
-            
-
+    <div className="rounded flex flex-col h-full border border-gray-200 shadow bg-white">
+        <div className="aspect-video w-full">
+            <video
+            ref={videoRef}
+            src={`${videoUrl}`}
+            className="w-full h-full object-cover"
+            controls
+            loop
+            muted
+            playsInline
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            />
         </div>
-        <div className="bg-white flex flex-col gap-1 w-[400px] pb-4 pl-2 pt-1">
+
+        <div className="flex flex-col gap-1 px-4 py-3 flex-1">
             <div className="font-bold text-lg">{title}</div>
             <div className="text-gray-500 text-sm">{desc}</div>
         </div>
-
     </div>
+
         {/* <video controls height={400} width={400} src={"https://ik.imagekit.io/tsy0ynecp/file_example_MP4_1280_10MG_-ZhN8yNmH.mp4"}></video> */}
     </>
 }
