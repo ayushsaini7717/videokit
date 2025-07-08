@@ -1,4 +1,5 @@
 "use client";
+import Videocard from "@/app/components/videocard";
 import { useEffect, useState } from "react";
 
 interface videoSchema{
@@ -15,7 +16,6 @@ interface videoSchema{
 
 const VideoRender=()=>{
     const [videos,Setvideos]=useState<videoSchema[]>([]);
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); 
 
     useEffect(()=>{
         const fetcher=async ()=>{
@@ -26,21 +26,28 @@ const VideoRender=()=>{
         }
         fetcher();
     },[])
-    return <div className="p-1">
-        {videos.map((item,i)=>{
-            return <div key={i} className="border cursor-pointer w-[500px] border-black p-4 rounded" onMouseEnter={()=>setHoveredIndex(i)} onMouseLeave={()=>setHoveredIndex(-1)}>
-                <div>
-                    {hoveredIndex === i? <video src={`${item.videoUrl}`} height={400} width={400} autoPlay muted playsInline></video>
-                    :
-                    <img src={`${item.thumbnailUrl}`} height={400} width={400}></img>
-                    }
-
-                </div>
-                <h1>{item.title}</h1>
-                <h5>{item.description}</h5>
-            </div>
-        })}
+    return  <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full max-w-7xl mx-auto">
+      <h1 className="font-bold text-3xl sm:text-4xl mb-2">Latest Videos</h1>
+      <p className="text-gray-600 text-sm sm:text-base mb-6">
+        Discover amazing content from our community
+      </p>
+  
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {videos.map((item, i) => (
+          <div key={i} className="w-full">
+            <Videocard
+              title={item.title}
+              desc={item.description}
+              videoUrl={item.videoUrl}
+              thumbnailUrl={item.thumbnailUrl}
+            />
+          </div>
+        ))}
+      </div>
     </div>
+  </div>
+  
 }
 
 export default VideoRender;

@@ -1,5 +1,6 @@
 import AnimatedText from './components/animatedText';
 import CardComp from './components/card';
+import NavigateBtn from './components/navigateBtn';
 
 export default function Home() {
   return <main className='py-2 min-h-screen flex flex-col gap-7 justify-center items-center px-4 text-center'>
@@ -10,8 +11,10 @@ export default function Home() {
   <p className='text-lg md:text-xl text-gray-500 font-bold max-w-xl'>Upload, share, and discover amazing videos from creators everywhere</p>
 
   <div className='flex flex-col sm:flex-row gap-3'>
-    <button className='py-2 px-6 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition duration-100 ease-linear text-sm'>Upload Videos</button>
-    <button className='py-2 px-6 bg-white text-black font-medium cursor-pointer rounded hover:bg-white/90 transition duration-100 ease-linear text-sm'>Browse Videos</button>
+    <NavigateBtn path='/uploadfile' text='Upload Videos' bgcolor='black'/>
+    <NavigateBtn path='/videohome' text='Browse Videos' bgcolor='white'/>
+    {/* <button className='py-2 px-6 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition duration-100 ease-linear text-sm'>Upload Videos</button>
+    <button className='py-2 px-6 bg-white text-black font-medium cursor-pointer rounded hover:bg-white/90 transition duration-100 ease-linear text-sm'>Browse Videos</button> */}
   </div>
 
   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 w-full max-w-6xl px-4'>
