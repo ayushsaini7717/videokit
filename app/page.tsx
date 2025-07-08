@@ -1,9 +1,8 @@
 import AnimatedText from './components/animatedText';
 import CardComp from './components/card';
-import './styles.css';
 
 export default function Home() {
-  return <main id='backgroundcolor' className='py-2 min-h-screen flex flex-col gap-7 justify-center items-center px-4 text-center'>
+  return <main className='py-2 min-h-screen flex flex-col gap-7 justify-center items-center px-4 text-center'>
   <h1 className='font-black text-3xl md:text-4xl'>
     <AnimatedText text={'Share Your Videos with the World'}/>
     

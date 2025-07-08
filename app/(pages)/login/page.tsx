@@ -23,7 +23,7 @@ const Login=()=>{
             router.push('/')
         }
     }
-    return <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #f3f0ff, #ffffff)' }}>
+    return <div className="min-h-screen flex items-center justify-center">
     <div className="w-[90%] max-w-md sm:w-[80%] md:w-[60%] lg:w-[35vw] bg-white border border-gray-300 rounded p-6 flex flex-col items-center shadow-sm">
       
       <div className="mb-3">

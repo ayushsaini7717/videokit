@@ -79,13 +79,32 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
 
   return (
     <>
-      <input
+      {/* <input
         type="file"
         ref={fileref}
         accept={fileType === "video" ? "video/*" : "image/*"}
         onChange={handleFileChange}
-      />
-      {uploading && <span>Loading....</span>}
+      /> */}
+      <label htmlFor="fileInput" className="block w-full">
+        <div
+          className="flex flex-col border-2 border-dotted border-gray-500 justify-center items-center p-6 rounded-md hover:bg-gray-50 transition cursor-pointer w-full text-center"
+        >
+          <div className="font-semibold text-sm sm:text-base">Click to select video file</div>
+          <div className="text-xs sm:text-sm text-gray-500">or drag and drop your video here</div>
+        </div>
+
+        <input
+          id="fileInput"
+          type="file"
+          ref={fileref}
+          accept={fileType === "video" ? "video/*" : "image/*"}
+          className="hidden"
+          onChange={handleFileChange}
+        />
+
+        <p className="text-xs text-gray-400 mt-1">Max size: 100MB</p>
+      </label>
+
     </>
   );
 };

@@ -9,7 +9,7 @@ const Navbar=()=>{
     const {data: session,status}=useSession();
     const [menuOpen, setMenuOpen] = useState(false);
 
-    return <div className="w-full border-b border-gray-300 px-4 py-3 flex items-center justify-between relative">
+    return <div className="bg-white w-full border-b border-gray-300 px-4 py-3 flex items-center justify-between relative">
     <div className="flex items-center gap-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-play h-8 w-8 text-purple-600">
         <polygon points="6 3 20 12 6 21 6 3" />
@@ -18,13 +18,15 @@ const Navbar=()=>{
     </div>
 
     <div className="hidden sm:flex gap-2 items-center">
-      {status === "authenticated" ? (
+      {status === "authenticated" ? (<>
+        <div className="text-sm text-gray-500">Welcome, {session.user.name ? session.user.name : session.user.email?.split('@')[0]}</div>
         <button
           className="py-2 px-4 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition text-sm"
           onClick={() => signOut()}
         >
           Sign out
         </button>
+      </>
       ) : (
         <>
           <button
