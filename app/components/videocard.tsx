@@ -1,11 +1,17 @@
+"use client";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+
 type videoschema={
     title: string,
     desc: string,
     videoUrl: string,
     thumbnailUrl: string,
+    id: string
 }
-import { useRef } from "react";
-const Videocard=({videoUrl,thumbnailUrl,title,desc} : videoschema)=>{
+
+const Videocard=({videoUrl,thumbnailUrl,title,desc,id} : videoschema)=>{
+    const router=useRouter();
     const videoRef=useRef<HTMLVideoElement>(null);
     const handleMouseEnter = () => {
         videoRef.current?.play();
@@ -16,7 +22,7 @@ const Videocard=({videoUrl,thumbnailUrl,title,desc} : videoschema)=>{
         
       };
     return <>
-    <div className="rounded flex flex-col h-full border border-gray-200 shadow bg-white">
+    <div onClick={()=>router.push(`/home/${id}`)} className="rounded flex flex-col h-full border border-gray-200 shadow bg-white">
         <div className="aspect-video w-full">
             <video
             ref={videoRef}

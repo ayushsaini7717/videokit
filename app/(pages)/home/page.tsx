@@ -37,6 +37,7 @@ const VideoRender=()=>{
         {videos.map((item, i) => (
           <div key={i} className="w-full">
             <Videocard
+              id={item._id}
               title={item.title}
               desc={item.description}
               videoUrl={item.videoUrl}

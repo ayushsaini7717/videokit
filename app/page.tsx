@@ -12,7 +12,7 @@ export default function Home() {
 
   <div className='flex flex-col sm:flex-row gap-3'>
     <NavigateBtn path='/uploadfile' text='Upload Videos' bgcolor='black'/>
-    <NavigateBtn path='/videohome' text='Browse Videos' bgcolor='white'/>
+    <NavigateBtn path='/home' text='Browse Videos' bgcolor='white'/>
     {/* <button className='py-2 px-6 bg-black text-white font-medium cursor-pointer rounded hover:bg-black/90 transition duration-100 ease-linear text-sm'>Upload Videos</button>
     <button className='py-2 px-6 bg-white text-black font-medium cursor-pointer rounded hover:bg-white/90 transition duration-100 ease-linear text-sm'>Browse Videos</button> */}
   </div>
