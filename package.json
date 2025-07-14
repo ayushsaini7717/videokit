@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+
+    "worker": "ts-node -r tsconfig-paths/register -P tsconfig.worker.json workers/likeworker.ts",
+    "worker:dev": "nodemon --watch workers -e ts --exec npm run worker",
+    "build:worker": "tsc -p tsconfig.worker.json",
+    "start:worker": "node dist/workers/likeworker.js"
   },
   "dependencies": {
     "@imagekit/next": "^2.1.2",
