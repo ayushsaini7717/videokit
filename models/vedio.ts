@@ -11,6 +11,7 @@ export interface ivedio{
     description: string;
     videoUrl: string;
     thumbnailUrl: string;
+    authorEmail: string;
     controls?: boolean;
     transformation: {
         height: Number;
@@ -25,6 +26,7 @@ const vedioSchema=new Schema<ivedio>({
     videoUrl: {type: String, required: true},
     thumbnailUrl: {type: String,required: true},
     controls: {type: Boolean,default: true},
+    authorEmail: {type: String},
     transformation: {
         height: {type: Number,default: Vedio_Dimensions.height},
         width: {type: Number,default: Vedio_Dimensions.width},

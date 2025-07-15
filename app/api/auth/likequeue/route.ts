@@ -4,13 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest){
     const body=await req.json();
 
-    if(!body.userId || !body.mediaId){
+    if(!body.userMail || !body.mediaId){
         return NextResponse.json({error: 'Missing userId or mediaId' },{status: 400});
     }
     try{
         const payload=JSON.stringify({
-            userId: body.userId,
-            emailId: body.emailId
+            userMail: body.userMail,
+            mediaId: body.mediaId
         })
         await redis.lPush("likeQueue",payload);
         return NextResponse.json({msg: "Successfully Queued!"});

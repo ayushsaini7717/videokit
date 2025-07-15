@@ -1,7 +1,7 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FileUpload from "../../components/fileupload";
-
+import { useSession } from "next-auth/react"
 
 
 export default function UploadFile() {
@@ -12,6 +12,7 @@ export default function UploadFile() {
   const [success,setSuccess]=useState(false);
   const [uploadedData,setUploadedData]=useState<any | null>(null);
   const [isUploadComplete, setIsUploadComplete] = useState(false);
+  const { data: session, status } = useSession()
 
 
   const handleSuccess = async (response: any) => {
@@ -35,7 +36,8 @@ export default function UploadFile() {
           title,
           description: desc,
           thumbnailUrl: uploadedData.thumbnailUrl,
-          videoUrl: uploadedData.url
+          videoUrl: uploadedData.url,
+          authorEmail: session?.user.email
         })
       });
   

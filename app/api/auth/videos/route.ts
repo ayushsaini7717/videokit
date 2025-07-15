@@ -34,7 +34,7 @@ export async function POST(req: NextRequest){
 
         const body:ivedio=await req.json();
 
-        if(!body.title || !body.description || !body.thumbnailUrl || !body.videoUrl){
+        if(!body.title || !body.description || !body.thumbnailUrl || !body.videoUrl || !body.authorEmail){
             return NextResponse.json({error : "Missing required Fields!"},{status: 400})
         }
         const videoData={
